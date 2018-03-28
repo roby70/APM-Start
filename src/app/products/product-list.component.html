@@ -1,5 +1,5 @@
 <div class='panel panel-primary'>
-    <div class='panel-heading'>Product List</div>
+    <div class='panel-heading'>{{pageTitle}}</div>
     <div class='panel-body'>
         <div class='row'>
             <div class="col-md-2">Filter by:</div>
@@ -21,13 +21,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let product of products'>
+                    <tr *ngFor='let product of filteredProducts'>
                         <td><img *ngIf='showImage' [src]='product.imageUrl' [title]='product.productName | uppercase'/></td>
                         <td>{{product.productName}}</td>
                         <td>{{product.productCode | lowercase | convertToSpaces:'-'}}</td>
                         <td>{{product.releaseDate}}</td>
                         <td>{{product.price | currency:'USD':true:'1.2-2'}}</td>
-                        <td>{{product.starRating}}</td>
+                        <td><pm-star [rating]='product.starRating' (ratingClicked)='onRatingClicked($event)'></pm-star></td>
                     </tr>
                 </tbody>
             </table>
